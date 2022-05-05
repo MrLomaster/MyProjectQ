@@ -15,7 +15,6 @@ class MainWindow : public QMainWindow
 public:
     QSqlDatabase db=QSqlDatabase::addDatabase("QSQLITE", "SQLITE");
     MainWindow(QWidget *parent = nullptr);
-    QString Name;
     int buff;
     ~MainWindow();
 

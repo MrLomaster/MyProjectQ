@@ -42,14 +42,19 @@ void MainWindow::on_BtnFarther_clicked()
 
 void MainWindow::on_BtnOk_clicked()
 {
-    Name=ui->LEdit->text();
-    db.setDatabaseName("D:/db/DB.db");
+    db.setDatabaseName("C:/qt_creator/MyProjectQ/myproject.db");
     bool ok=db.open();
     if(!ok)
     {
-        throw tr("Cannot open database");
+//        throw tr("Cannot open database");
     }
 
     QSqlQuery query(db);
 
+    query.prepare("INSERT INTO Players (Name, LVL, ATK, DEF) VALUES (:Name, :LVL, :ATK, :DEF)");
+    query.bindValue(":Name", ui->LEdit->text());
+    query.bindValue(":LVL", 1);
+    query.bindValue(":ATK", 5);
+    query.bindValue(":DEF", 5);
+    db.close();
 }
